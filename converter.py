@@ -3,7 +3,7 @@ import glob
 import pandas as pd
 import argparse
 import xml.etree.ElementTree as ET
-
+import cv2
 
 def xml_to_txt(path, classes):
     xml_list = []
@@ -72,6 +72,8 @@ def main():
     f.close()
     xml_df = xml_to_txt(args.inputDir, classes)
     for i in xml_df:
+        img = cv2.imread(args.inputDir+"/"+i["file"].split('.')[0]+".png")
+        cv2.imwrite(args.outputDir+"/"+i["file"].split('.')[0]+".jpg", img)
         f = open(args.outputDir+"/"+i["file"].split('.')[0]+".txt", "w+")
         st = ""
         for j in i["data"]:
