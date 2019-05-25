@@ -29,8 +29,8 @@ def xml_to_txt(path, classes):
             height = int(root.find('size')[1].text)
             val = [
                 classes.index(member[0].text), 
-                str(round(xmin/width, 4)), 
-                str(round(ymin/height, 4)),
+                str(round((xmax+xmin)/2/width, 4)), 
+                str(round((ymax+ymin)/2/height, 4)),
                 str(round((xmax-xmin)/width, 4)), 
                 str(round((ymax-ymin)/height, 4)),
                 root.find('filename').text
